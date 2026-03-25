@@ -27,19 +27,7 @@
       href =
         "https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css";
     </script>
-    <script>
-      /* ── Live clock ── */
-      (function () {
-        const dateEl = document.getElementById("dtDate");
-        if (dateEl) {
-          const now = new Date();
-          const day = now.toLocaleDateString("en-US", { weekday: "short" });
-          const month = now.toLocaleDateString("en-US", { month: "short" });
-          const date = now.getDate();
-          dateEl.textContent = day + " " + date + " " + month;
-        }
-      })();
-    </script>
+
     <style>
       *,
       *::before,
@@ -267,12 +255,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 80px 5vw;
+        padding: 120px 5vw;
       }
 
       /* Hero / About */
       #about {
-        padding: 0 5vw;
+        padding: 120px 5vw;
+        padding-bottom: 80px;
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -429,7 +418,7 @@
         border: none;
       }
       .hero-cta {
-        margin-top: 120px;
+        margin-top: 48px;
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
@@ -552,6 +541,7 @@
         align-items: center;
         content-visibility: auto;
         contain-intrinsic-size: 0 800px;
+        padding-top: 100px;
       }
 
       .work-grid {
@@ -676,6 +666,12 @@
         color: var(--muted);
         line-height: 1.6;
       }
+
+      #contact {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+      
       .contact-socials {
         display: flex;
         justify-content: center;
@@ -795,6 +791,7 @@
 
       /* Work Experience */
       #experience {
+        padding-bottom: 60px;
         flex-direction: column;
         align-items: center;
       }
@@ -891,9 +888,111 @@
         margin: 14px auto 0;
       }
 
-      @media (max-width: 700px) {
+      /* ── Mobile Responsive ── */
+      @media (max-width: 767px) {
+        /* Hide custom cursor on mobile */
+        * { cursor: auto !important; }
+        #cursor-dot, #cursor-ring { display: none !important; }
+
+        /* Header */
+        header {
+          width: calc(100% - 24px);
+          padding: 0 14px;
+          height: 52px;
+          top: 10px;
+          grid-template-columns: auto 1fr auto;
+        }
+        .header-datetime { display: none; }
+
+        /* Main */
+        main { padding-top: 72px; }
+
+        section {
+          padding: 80px 5vw 60px;
+          min-height: unset;
+        }
+
+        /* Hero — stack photo on top of text */
+        #about {
+          padding: 80px 5vw 60px;
+          min-height: unset;
+        }
+
+        .hero-inner {
+          flex-direction: column;
+          align-items: center;
+          gap: 28px;
+        }
+
+        .hero-photo {
+          width: 150px;
+          height: 150px;
+        }
+
+        .hero-text {
+          align-items: center;
+          text-align: center;
+        }
+
         .hero-bio {
           max-width: 100%;
+          text-align: center;
+        }
+
+        .greeting {
+          font-size: clamp(1.7rem, 8vw, 2.4rem);
+          text-align: center;
+        }
+
+        .hero-cta {
+          margin-top: 32px;
+          justify-content: center;
+        }
+
+        /* About cards — single column */
+        .about-cards {
+          grid-template-columns: 1fr;
+        }
+
+        /* Work grid — single column */
+        .work-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Experience */
+        .exp-item { padding: 18px 16px; }
+        .exp-header {
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        /* Contact socials — wrap on mobile */
+        .contact-socials {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        /* Scroll to top button */
+        #scrollTop {
+          bottom: 16px;
+          right: 16px;
+          width: 38px;
+          height: 38px;
+        }
+
+        .section-title {
+          font-size: clamp(1.7rem, 7vw, 2.4rem);
+        }
+
+        /* Hide "Resume" text, keep only the icon */
+        .resume-label { display: none; }
+      }
+
+      /* Medium phones (480-767px) — slightly larger photo */
+      @media (min-width: 480px) and (max-width: 767px) {
+        .hero-photo {
+          width: 165px;
+          height: 165px;
         }
       }
     </style>
@@ -930,7 +1029,7 @@
               d="M228,144v64a12,12,0,0,1-12,12H40a12,12,0,0,1-12-12V144a12,12,0,0,1,24,0v52H204V144a12,12,0,0,1,24,0Zm-108.49,8.49a12,12,0,0,0,17,0l40-40a12,12,0,0,0-17-17L140,115V32a12,12,0,0,0-24,0v83L96.49,95.51a12,12,0,0,0-17,17Z"
             ></path>
           </svg>
-          Resume
+          <span class="resume-label">Resume</span>
         </a>
       </div>
     </header>
@@ -1011,7 +1110,6 @@
           <div class="work-card">
             <img
               src="images/rg thumbnail.jpg"
-              loading="lazy"
               decoding="async"
               alt="Regrow Waste Management"
               class="work-card-img"
@@ -1043,7 +1141,6 @@
           <div class="work-card">
             <img
               src="images/sk thumbnail.jpg"
-              loading="lazy"
               decoding="async"
               alt="Skilled Minds — UX/UI Case Study"
               class="work-card-img"
@@ -1552,6 +1649,18 @@
         }
 
         gsap.delayedCall(1.35, cycle);
+      })();
+
+      /* ── Live date ── */
+      (function () {
+        const dateEl = document.getElementById("dtDate");
+        if (dateEl) {
+          const now = new Date();
+          const day = now.toLocaleDateString("en-US", { weekday: "short" });
+          const month = now.toLocaleDateString("en-US", { month: "short" });
+          const date = now.getDate();
+          dateEl.textContent = day + " " + date + " " + month;
+        }
       })();
 
       /* ── Footer emoji swap on hover ── */
