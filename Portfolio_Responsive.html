@@ -22,8 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <!-- Preload work-section images for instant rendering -->
-    <link rel="preload" as="image" href="images/rg thumbnail.jpg" />
-    <link rel="preload" as="image" href="images/sk thumbnail.jpg" />
+    <link rel="preload" as="image" href="images/rg thumbnail.webp" />
+    <link rel="preload" as="image" href="images/sk thumbnail.webp" />
 
     <style>
       *,
@@ -569,7 +569,7 @@
       .work-card-img {
         width: 100%;
         aspect-ratio: 16/9;
-        object-fit: cover;
+        object-fit: fill;
         object-position: top center;
         display: block;
         opacity: 0;
@@ -1110,7 +1110,7 @@
         <div class="work-grid" id="work-grid">
           <div class="work-card">
             <img
-              src="images/rg thumbnail.jpg"
+              src="images/rg thumbnail.webp"
               fetchpriority="high"
               decoding="async"
               width="438"
@@ -1144,7 +1144,7 @@
           </div>
           <div class="work-card">
             <img
-              src="images/sk thumbnail.jpg"
+              src="images/sk thumbnail.webp"
               fetchpriority="high"
               decoding="async"
               width="438"
