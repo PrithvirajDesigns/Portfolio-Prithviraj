@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prithviraj R — UI UX Designer</title>
-     <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><style>path{fill:%23000}@media(prefers-color-scheme:dark){path{fill:%23fff}}</style><path d='M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm104,0a8,8,0,0,1-8,8H152a8,8,0,0,1,0-16h24A8,8,0,0,1,184,108Zm-9.08,48c-10.29,17.79-27.39,28-46.92,28s-36.63-10.2-46.93-28a8,8,0,1,1,13.86-8c7.46,12.91,19.2,20,33.07,20s25.61-7.1,33.08-20a8,8,0,1,1,13.84,8Z'/></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><style>path{fill:%23000}@media(prefers-color-scheme:dark){path{fill:%23fff}}</style><path d='M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm104,0a8,8,0,0,1-8,8H152a8,8,0,0,1,0-16h24A8,8,0,0,1,184,108Zm-9.08,48c-10.29,17.79-27.39,28-46.92,28s-36.63-10.2-46.93-28a8,8,0,1,1,13.86-8c7.46,12.91,19.2,20,33.07,20s25.61-7.1,33.08-20a8,8,0,1,1,13.84,8Z'/></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,7 +24,10 @@
       }
       window.scrollTo(0, 0);
     </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
@@ -96,55 +102,6 @@
         min-height: 100vh;
         overflow-x: hidden;
         position: relative;
-      }
-
-      /* ── Custom cursor ── */
-      * { cursor: none !important; }
-
-      #cursor-dot {
-        position: fixed;
-        top: 0; left: 0;
-        width: 8px; height: 8px;
-        background: var(--primary-dark);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
-        will-change: transform;
-      }
-
-      #cursor-ring {
-        position: fixed;
-        top: 0; left: 0;
-        width: 36px; height: 36px;
-        border: 1.5px solid var(--primary-dark);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9998;
-        transform: translate(-50%, -50%);
-        opacity: 0.55;
-        transition: width 0.22s ease, height 0.22s ease, opacity 0.22s ease, border-color 0.2s ease;
-        will-change: transform;
-      }
-
-      /* Hover states — applied via JS class */
-      body.cursor-hover #cursor-dot {
-        width: 12px; height: 12px;
-        background: #5b8cff;
-      }
-      body.cursor-hover #cursor-ring {
-        width: 52px; height: 52px;
-        opacity: 0.3;
-        border-color: #5b8cff;
-      }
-
-      body.cursor-click #cursor-dot {
-        width: 6px; height: 6px;
-      }
-      body.cursor-click #cursor-ring {
-        width: 22px; height: 22px;
-        opacity: 0.7;
       }
 
       /* Checkerboard paper background */
@@ -349,12 +306,7 @@
         display: inline-flex;
         align-items: center;
         gap: 9px;
-        background: linear-gradient(
-          135deg,
-          #e8eeff 0%,
-          #d4e2ff 55%,
-          #c2d3ff 100%
-        );
+        background: transparent;
         color: #1a1a2e;
         font-family: "Inter", sans-serif;
         font-size: 0.75rem;
@@ -365,7 +317,7 @@
         border-radius: 100px;
         margin-bottom: 22px;
         margin-top: 8px;
-        border: 1px solid rgba(194, 211, 255, 0.7);
+        border: 1px solid #5b8cff;
         box-shadow:
           0 2px 20px rgba(194, 211, 255, 0.3),
           inset 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -602,36 +554,39 @@
       }
 
       .work-card-body {
-        padding: 20px 22px;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-      .card-footer {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 12px;
-      }
+  padding: 20px 22px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "tag tag"
+    "title action";
+  align-items: center;
+  row-gap: 6px;
+}
+      
       .btn-card-more {
-        font-family: "Inter", sans-serif;
-        font-size: 0.78rem;
-        font-weight: 500;
-        color: var(--muted);
-        background: transparent;
-        border: 1px solid var(--border);
-        border-radius: 100px;
-        padding: 5px 14px;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        text-decoration: none;
-        letter-spacing: 0.02em;
-        transition:
-          color 0.2s,
-          border-color 0.2s,
-          background 0.2s;
-      }
+  grid-area: action;
+  justify-self: end;
+
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 5px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+}
       .btn-card-more:hover {
         color: var(--text);
         border-color: var(--primary-dark);
@@ -645,23 +600,18 @@
       }
 
       .work-card-tag {
-        font-family: "Inter", sans-serif;
-        font-size: 0.7rem;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--primary-dark);
-        margin-bottom: 6px;
-      }
+  grid-area: tag;
+}
 
       .work-card h3 {
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        font-size: 1.05rem;
-        letter-spacing: 0.03em;
-        margin-bottom: 6px;
-        color: var(--text);
-      }
+  grid-area: title;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
 
       .work-card p {
         font-family: "Inter", sans-serif;
@@ -675,7 +625,7 @@
         padding-top: 0px;
         padding-bottom: 0px;
       }
-      
+
       .contact-socials {
         display: flex;
         justify-content: center;
@@ -714,13 +664,17 @@
       }
 
       /* Footer */
+      /* Footer */
       footer {
         position: relative;
         z-index: 1;
-        text-align: center;
         padding: 28px 5vw;
         border-top: 1px solid var(--border);
         background: rgba(249, 250, 253, 0.9);
+
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
       }
 
       footer p {
@@ -729,14 +683,26 @@
         font-size: 0.9rem;
         letter-spacing: 0.04em;
         color: var(--muted);
+        margin: 0;
+      }
+
+      .footer-updated {
+        justify-self: start;
+        font-family: "Inter", sans-serif;
+        font-weight: 300;
+        font-size: 0.78rem;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        opacity: 0.7;
       }
 
       .footer-love {
+        justify-self: center;
         display: inline-flex;
         align-items: center;
         gap: 4px;
         cursor: default;
-        -webkit-tap-highlight-color: transparent; /* remove tap flash on iOS */
+        -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
       }
 
@@ -822,7 +788,9 @@
         border-radius: var(--radius);
         padding: 24px 28px;
         box-shadow: 0 2px 12px rgba(194, 211, 255, 0.08);
-        transition: box-shadow 0.2s, transform 0.2s;
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
       }
 
       .exp-item:hover {
@@ -904,8 +872,13 @@
       /* ── Mobile Responsive ── */
       @media (max-width: 767px) {
         /* Hide custom cursor on mobile */
-        * { cursor: auto !important; }
-        #cursor-dot, #cursor-ring { display: none !important; }
+        * {
+          cursor: auto !important;
+        }
+        #cursor-dot,
+        #cursor-ring {
+          display: none !important;
+        }
 
         /* Header */
         header {
@@ -915,10 +888,14 @@
           top: 10px;
           grid-template-columns: auto 1fr auto;
         }
-        .header-datetime { display: none; }
+        .header-datetime {
+          display: none;
+        }
 
         /* Main */
-        main { padding-top: 72px; }
+        main {
+          padding-top: 72px;
+        }
 
         section {
           padding: 80px 5vw 60px;
@@ -973,7 +950,9 @@
         }
 
         /* Experience */
-        .exp-item { padding: 18px 16px; }
+        .exp-item {
+          padding: 18px 16px;
+        }
         .exp-header {
           flex-direction: column;
           gap: 6px;
@@ -999,7 +978,9 @@
         }
 
         /* Hide "Resume" text, keep only the icon */
-        .resume-label { display: none; }
+        .resume-label {
+          display: none;
+        }
       }
 
       /* Medium phones (480-767px) — slightly larger photo */
@@ -1012,10 +993,6 @@
     </style>
   </head>
   <body>
-    <!-- Custom cursor -->
-    <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
-
     <header id="site-header">
       <div class="header-datetime">
         <span class="dt-date" id="dtDate">Thu, Mar 19</span>
@@ -1027,13 +1004,23 @@
       </nav>
       <div class="header-right">
         <a
-          href="https://drive.google.com/file/d/1ypFQZJ6XjPP9V3Lx9FTRku6ME2gyeds9/view?usp=sharing"
+          href="https://drive.google.com/file/d/1RQ59WGX61A7oxS6oMbEkzMs_ocvKKljA/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-resume"
           style="padding: 8px 20px; font-size: 0.82rem"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#000000" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"></path></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            fill="#000000"
+            viewBox="0 0 256 256"
+          >
+            <path
+              d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"
+            ></path>
+          </svg>
           <span class="resume-label">Resume</span>
         </a>
       </div>
@@ -1072,7 +1059,19 @@
                   >Prithviraj R</span
                 >
               </p>
-              <div class="role-badge" id="role-badge">UI UX Designer</div>
+              <div class="role-badge" id="role-badge">
+                ui ux designer
+                <span
+                  style="
+                    opacity: 0.5;
+                    font-weight: 400;
+                    margin-left: 4px;
+                    text-transform: lowercase;
+                  "
+                >
+                  / soon open to work
+                </span>
+              </div>
               <p class="hero-bio" id="hero-bio">
                 Crafting intuitive digital experiences that balance beauty and
                 function. I turn complex problems into elegant, user-centered
@@ -1125,12 +1124,13 @@
             <div class="work-card-body">
               <p class="work-card-tag">Web</p>
               <h3>Regrow Waste Management</h3>
-              <p>
-                Pricing page design for an eco-responsible waste management
-                platform serving 1,000+ clients across Kerala.
-              </p>
               <div class="card-footer">
-                <a href="#" class="btn-card-more">
+                <a
+                  href="https://www.behance.net/gallery/239025295/Regrow-Website-UI-Waste-Management-Co-UIUX"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-card-more"
+                >
                   More
                   <svg
                     width="12"
@@ -1159,12 +1159,17 @@
             <div class="work-card-body">
               <p class="work-card-tag">mobile app</p>
               <h3>Skilled Minds — e-Learning App</h3>
-              <p>
+              <!-- <p>
                 An engaging e-learning platform designed for 1 lakh+ students.
                 Tools: Figma, Illustrator, Photoshop, Miro. Duration: 4 weeks.
-              </p>
+              </p> -->
               <div class="card-footer">
-                <a href="#" class="btn-card-more">
+                <a
+                  href="https://www.behance.net/gallery/235050807/SkilledMinds-e-learning-app-UXUI-Case-Study"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-card-more"
+                >
                   More
                   <svg
                     width="12"
@@ -1237,7 +1242,7 @@
 
       <!-- WORK EXPERIENCE -->
       <section id="experience">
-        <div style="max-width: 900px; width: 100%;">
+        <div style="max-width: 900px; width: 100%">
           <div class="section-header">
             <p class="section-label">Career</p>
             <h2 class="section-title">Work Experience</h2>
@@ -1245,7 +1250,6 @@
           </div>
 
           <div class="exp-list">
-
             <!-- NyQuest -->
             <div class="exp-item">
               <div class="exp-header">
@@ -1256,10 +1260,24 @@
                 <span class="exp-period">Jan 2026 — Present</span>
               </div>
               <ul class="exp-bullets">
-                <li>Joined as a full-time UI/UX Designer, leading end-to-end design for internal and client-facing digital products.</li>
-                <li>Collaborated with cross-functional teams including developers and stakeholders to define user flows, wireframes, and high-fidelity prototypes.</li>
-                <li>Engaged with stakeholders through interviews to understand pain points and iterated on the product accordingly.</li>
-                <li>Gained experience designing SaaS products across multiple verticals like D2C platforms, admin dashboards, ERPs, and CRMs.</li>
+                <li>
+                  Joined as a full-time UI/UX Designer, leading end-to-end
+                  design for internal and client-facing digital products.
+                </li>
+                <li>
+                  Collaborated with cross-functional teams including developers
+                  and stakeholders to define user flows, wireframes, and
+                  high-fidelity prototypes.
+                </li>
+                <li>
+                  Engaged with stakeholders through interviews to understand
+                  pain points and iterated on the product accordingly.
+                </li>
+                <li>
+                  Gained experience designing SaaS products across multiple
+                  verticals like D2C platforms, admin dashboards, ERPs, and
+                  CRMs.
+                </li>
               </ul>
             </div>
 
@@ -1273,10 +1291,22 @@
                 <span class="exp-period">May 2025 — Nov 2025</span>
               </div>
               <ul class="exp-bullets">
-                <li>Worked as a UI/UX design intern, contributing to the design of web and mobile interfaces.</li>
-                <li>Created wireframes, mockups, and interactive prototypes using Figma.</li>
-                <li>Participated in design reviews and incorporated feedback to refine user interfaces aligned with brand guidelines.</li>
-                <li>Conducted user research and usability testing to iterate on designs and deliver intuitive experiences.</li>
+                <li>
+                  Worked as a UI/UX design intern, contributing to the design of
+                  web and mobile interfaces.
+                </li>
+                <li>
+                  Created wireframes, mockups, and interactive prototypes using
+                  Figma.
+                </li>
+                <li>
+                  Participated in design reviews and incorporated feedback to
+                  refine user interfaces aligned with brand guidelines.
+                </li>
+                <li>
+                  Conducted user research and usability testing to iterate on
+                  designs and deliver intuitive experiences.
+                </li>
               </ul>
             </div>
 
@@ -1290,13 +1320,24 @@
                 <span class="exp-period">Dec 2024 — Apr 2025</span>
               </div>
               <ul class="exp-bullets">
-                <li>Interned as a React Developer, contributing to the development of responsive web application.</li>
-                <li>Built and maintained reusable React components and integrated REST APIs to deliver dynamic, data-driven interfaces.</li>
-                <li>Worked closely with designers to accurately translate UI/UX designs into functional code.</li>
-                <li>Strengthened skills in React JS, component-based architecture, and front-end best practices in a professional setting.</li>
+                <li>
+                  Interned as a React Developer, contributing to the development
+                  of responsive web application.
+                </li>
+                <li>
+                  Built and maintained reusable React components and integrated
+                  REST APIs to deliver dynamic, data-driven interfaces.
+                </li>
+                <li>
+                  Worked closely with designers to accurately translate UI/UX
+                  designs into functional code.
+                </li>
+                <li>
+                  Strengthened skills in React JS, component-based architecture,
+                  and front-end best practices in a professional setting.
+                </li>
               </ul>
             </div>
-
           </div>
         </div>
       </section>
@@ -1384,30 +1425,33 @@
     </main>
 
     <footer>
+      <span class="footer-updated">Last updated on April 2026</span>
       <p class="footer-love">
-        <span style="font-family: 'EB Garamond', serif; font-style: italic;">Built with love</span>
+        <span
+          style="
+            font-family: &quot;EB Garamond&quot;, serif;
+            font-style: italic;
+          "
+          >Built with love</span
+        >
         <span class="footer-emoji">😊</span>
       </p>
     </footer>
 
     <button id="scrollTop" aria-label="Scroll to top">
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-      >
-        <polyline points="18 15 12 9 6 15" />
-      </svg>
+      <i class="ph ph-arrow-up" style="font-size: 1.2rem"></i>
     </button>
 
     <script>
       /* ── Smooth image fade-in on load ── */
-      document.querySelectorAll('.work-card-img').forEach(function(img) {
-        if (img.complete) { img.classList.add('loaded'); }
-        else { img.addEventListener('load', function() { img.classList.add('loaded'); }); }
+      document.querySelectorAll(".work-card-img").forEach(function (img) {
+        if (img.complete) {
+          img.classList.add("loaded");
+        } else {
+          img.addEventListener("load", function () {
+            img.classList.add("loaded");
+          });
+        }
       });
 
       gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -1697,65 +1741,20 @@
 
         /* Mobile / tablet: tap toggles the emoji */
         let tapped = false;
-        container.addEventListener("touchstart", (e) => {
-          e.preventDefault(); /* prevent ghost mouse events */
-          if (!tapped) {
-            emoji.textContent = "😍";
-            tapped = true;
-          } else {
-            emoji.textContent = "😊";
-            tapped = false;
-          }
-        }, { passive: false });
-      })();
-      /* ── Custom cursor ── */
-      (function () {
-        const dot  = document.getElementById("cursor-dot");
-        const ring = document.getElementById("cursor-ring");
-        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-        let ringX  = mouseX, ringY  = mouseY;
-        let rafId;
-
-        // Immediately position dot on first move so it doesn't start at 0,0
-        document.addEventListener("mousemove", (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-          dot.style.left = mouseX + "px";
-          dot.style.top  = mouseY + "px";
-        }, { passive: true });
-
-        // Ring follows with smooth lag
-        function animateRing() {
-          ringX += (mouseX - ringX) * 0.12;
-          ringY += (mouseY - ringY) * 0.12;
-          ring.style.left = ringX + "px";
-          ring.style.top  = ringY + "px";
-          rafId = requestAnimationFrame(animateRing);
-        }
-        animateRing();
-
-        // Hover state on interactive elements
-        const hoverTargets = "a, button, .btn, .work-card, .about-card, .social-pill, input, textarea, [role='button'], .nav-link, #scrollTop";
-        document.addEventListener("mouseover", (e) => {
-          if (e.target.closest(hoverTargets)) document.body.classList.add("cursor-hover");
-        });
-        document.addEventListener("mouseout", (e) => {
-          if (e.target.closest(hoverTargets)) document.body.classList.remove("cursor-hover");
-        });
-
-        // Click state
-        document.addEventListener("mousedown", () => document.body.classList.add("cursor-click"));
-        document.addEventListener("mouseup",   () => document.body.classList.remove("cursor-click"));
-
-        // Hide cursor when leaving window
-        document.addEventListener("mouseleave", () => {
-          dot.style.opacity  = "0";
-          ring.style.opacity = "0";
-        });
-        document.addEventListener("mouseenter", () => {
-          dot.style.opacity  = "1";
-          ring.style.opacity = "0.55";
-        });
+        container.addEventListener(
+          "touchstart",
+          (e) => {
+            e.preventDefault(); /* prevent ghost mouse events */
+            if (!tapped) {
+              emoji.textContent = "😍";
+              tapped = true;
+            } else {
+              emoji.textContent = "😊";
+              tapped = false;
+            }
+          },
+          { passive: false },
+        );
       })();
     </script>
   </body>
