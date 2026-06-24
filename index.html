@@ -515,11 +515,24 @@
         cursor: pointer;
         will-change: transform;
         transform: translateZ(0);
+        text-decoration: none;
+        display: block;
+        color: inherit;
       }
 
       .work-card:hover {
         transform: translateY(-6px);
         box-shadow: 0 16px 48px rgba(194, 211, 255, 0.35);
+      }
+
+      .work-card:hover .btn-card-more {
+        color: var(--text);
+        border-color: var(--primary-dark);
+        background: rgba(194, 211, 255, 0.15);
+      }
+
+      .work-card:hover .btn-card-more svg {
+        transform: translateX(3px);
       }
 
       .work-card-img {
@@ -554,64 +567,55 @@
       }
 
       .work-card-body {
-  padding: 20px 22px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas:
-    "tag tag"
-    "title action";
-  align-items: center;
-  row-gap: 6px;
-}
-      
-      .btn-card-more {
-  grid-area: action;
-  justify-self: end;
+        padding: 20px 22px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "tag tag"
+          "title action";
+        align-items: center;
+        row-gap: 6px;
+      }
 
-  font-family: "Inter", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--muted);
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 5px 14px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  transition:
-    color 0.2s,
-    border-color 0.2s,
-    background 0.2s;
-}
-      .btn-card-more:hover {
-        color: var(--text);
-        border-color: var(--primary-dark);
-        background: rgba(194, 211, 255, 0.15);
+      .btn-card-more {
+        grid-area: action;
+        justify-self: end;
+
+        font-family: "Inter", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--muted);
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 5px 14px;
+        pointer-events: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        letter-spacing: 0.02em;
+        transition:
+          color 0.2s,
+          border-color 0.2s,
+          background 0.2s;
       }
       .btn-card-more svg {
         transition: transform 0.2s;
       }
-      .btn-card-more:hover svg {
-        transform: translateX(3px);
-      }
 
       .work-card-tag {
-  grid-area: tag;
-}
+        grid-area: tag;
+      }
 
       .work-card h3 {
-  grid-area: title;
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-size: 1.05rem;
-  letter-spacing: 0.03em;
-  color: var(--text);
-}
+        grid-area: title;
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 1.05rem;
+        letter-spacing: 0.03em;
+        color: var(--text);
+      }
 
       .work-card p {
         font-family: "Inter", sans-serif;
@@ -734,7 +738,7 @@
       }
       #scrollTop {
         position: fixed;
-        bottom: 28px;
+        bottom: 88px;
         right: 28px;
         z-index: 200;
         width: 44px;
@@ -967,7 +971,7 @@
 
         /* Scroll to top button */
         #scrollTop {
-          bottom: 16px;
+          bottom: 80px;
           right: 16px;
           width: 38px;
           height: 38px;
@@ -1111,7 +1115,12 @@
         </div>
 
         <div class="work-grid" id="work-grid">
-          <div class="work-card">
+          <a
+            href="https://www.behance.net/gallery/239025295/Regrow-Website-UI-Waste-Management-Co-UIUX"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="work-card"
+          >
             <img
               src="images/rg thumbnail.webp"
               fetchpriority="high"
@@ -1125,12 +1134,7 @@
               <p class="work-card-tag">Web</p>
               <h3>Regrow Waste Management</h3>
               <div class="card-footer">
-                <a
-                  href="https://www.behance.net/gallery/239025295/Regrow-Website-UI-Waste-Management-Co-UIUX"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-card-more"
-                >
+                <span class="btn-card-more">
                   More
                   <svg
                     width="12"
@@ -1142,11 +1146,16 @@
                   >
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
-                </a>
+                </span>
               </div>
             </div>
-          </div>
-          <div class="work-card">
+          </a>
+          <a
+            href="https://www.behance.net/gallery/235050807/SkilledMinds-e-learning-app-UXUI-Case-Study"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="work-card"
+          >
             <img
               src="images/sk thumbnail.webp"
               fetchpriority="high"
@@ -1164,12 +1173,7 @@
                 Tools: Figma, Illustrator, Photoshop, Miro. Duration: 4 weeks.
               </p> -->
               <div class="card-footer">
-                <a
-                  href="https://www.behance.net/gallery/235050807/SkilledMinds-e-learning-app-UXUI-Case-Study"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-card-more"
-                >
+                <span class="btn-card-more">
                   More
                   <svg
                     width="12"
@@ -1181,10 +1185,10 @@
                   >
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
-                </a>
+                </span>
               </div>
             </div>
-          </div>
+          </a>
           <!-- <div class="work-card">
             <div class="work-card-img-placeholder">Energy24by7</div>
             <div class="work-card-body">
