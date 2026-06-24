@@ -31,6 +31,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
     <!-- Preload work-section images for instant rendering -->
     <link rel="preload" as="image" href="images/rg thumbnail.webp" />
     <link rel="preload" as="image" href="images/sk thumbnail.webp" />
@@ -708,6 +709,9 @@
         cursor: default;
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        position: relative;
       }
 
       @media (hover: none) {
@@ -731,6 +735,83 @@
         color: inherit;
         font-weight: 400;
         transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+      }
+
+      /* ── Heart Blast Easter Egg ── */
+      .heart-blast-container {
+        position: absolute;
+        bottom: 100%;
+        left: 52%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        overflow: visible;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      .heart-particle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 1.4rem;
+        pointer-events: none;
+        will-change: transform, opacity;
+        z-index: 51;
+      }
+
+      @keyframes heartBlast {
+        0% {
+          transform: translate(0, 0) scale(0.4) rotate(0deg);
+          opacity: 1;
+        }
+        10% {
+          opacity: 1;
+          transform: translate(var(--tx-early), var(--ty-early)) scale(1.1) rotate(var(--rot-early));
+        }
+        40% {
+          opacity: 1;
+          transform: translate(var(--tx-mid), var(--ty-mid)) scale(1) rotate(var(--rot-mid));
+        }
+        75% {
+          opacity: 0.7;
+        }
+        100% {
+          transform: translate(var(--tx-end), var(--ty-end)) scale(0.2) rotate(var(--rot-end));
+          opacity: 0;
+        }
+      }
+
+      .heart-particle.animate {
+        animation: heartBlast var(--duration) cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      }
+
+      .heart-lottie-overlay {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px;
+        height: 300px;
+        pointer-events: none;
+        z-index: 52;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .heart-lottie-overlay.active {
+        opacity: 1;
+      }
+
+      /* Pulse feedback on each click toward the 5-click goal */
+      @keyframes clickPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.4); }
+        100% { transform: scale(1); }
+      }
+      .footer-emoji.pulse {
+        animation: clickPulse 0.3s ease;
       }
 
       #viewMoreBtn {
@@ -1430,7 +1511,7 @@
 
     <footer>
       <span class="footer-updated">Last updated on April 2026</span>
-      <p class="footer-love">
+      <p class="footer-love" id="footerLove">
         <span
           style="
             font-family: &quot;EB Garamond&quot;, serif;
@@ -1438,7 +1519,11 @@
           "
           >Built with love</span
         >
-        <span class="footer-emoji">😊</span>
+        <span class="footer-emoji" id="footerEmoji">😊</span>
+        <div class="heart-blast-container" id="heartBlastContainer"></div>
+        <div class="heart-lottie-overlay" id="heartLottieOverlay">
+          <dotlottie-wc src="Animation - 1712657092760.json" style="width: 300px; height: 300px" autoplay></dotlottie-wc>
+        </div>
       </p>
     </footer>
 
@@ -1731,16 +1816,24 @@
       })();
 
       /* ── Footer emoji swap — hover on desktop, tap on mobile/tablet ── */
+      /* ── + Heart Blast Easter Egg (5 clicks) ── */
       (function () {
-        const container = document.querySelector(".footer-love");
-        const emoji = document.querySelector(".footer-emoji");
+        const container = document.getElementById("footerLove");
+        const emoji = document.getElementById("footerEmoji");
+        const blastContainer = document.getElementById("heartBlastContainer");
+        const lottieOverlay = document.getElementById("heartLottieOverlay");
+
+        let clickCount = 0;
+        let blastCooldown = false;
+        const CLICK_THRESHOLD = 5;
+        const HEART_EMOJIS = ["❤️", "❤️", "❤️", "💕", "❤️", "❤️"];
 
         /* Desktop: hover */
         container.addEventListener("mouseenter", () => {
-          emoji.textContent = "😍";
+          if (!blastCooldown) emoji.textContent = "😍";
         });
         container.addEventListener("mouseleave", () => {
-          emoji.textContent = "😊";
+          if (!blastCooldown) emoji.textContent = "😊";
         });
 
         /* Mobile / tablet: tap toggles the emoji */
@@ -1748,17 +1841,112 @@
         container.addEventListener(
           "touchstart",
           (e) => {
-            e.preventDefault(); /* prevent ghost mouse events */
-            if (!tapped) {
-              emoji.textContent = "😍";
-              tapped = true;
-            } else {
-              emoji.textContent = "😊";
-              tapped = false;
+            e.preventDefault();
+            handleClick();
+            if (!blastCooldown) {
+              if (!tapped) {
+                emoji.textContent = "😍";
+                tapped = true;
+              } else {
+                emoji.textContent = "😊";
+                tapped = false;
+              }
             }
           },
           { passive: false },
         );
+
+        /* Desktop: click */
+        container.addEventListener("click", handleClick);
+
+        function handleClick() {
+          if (blastCooldown) return;
+
+          clickCount++;
+
+          /* Visual pulse feedback on each click */
+          emoji.classList.remove("pulse");
+          void emoji.offsetWidth; /* force reflow to restart animation */
+          emoji.classList.add("pulse");
+
+          /* Grow the emoji slightly with each click for visual feedback */
+          const progress = clickCount / CLICK_THRESHOLD;
+          emoji.style.transform = `scale(${1 + progress * 0.5})`;
+
+          if (clickCount >= CLICK_THRESHOLD) {
+            triggerHeartBlast();
+            clickCount = 0;
+          }
+        }
+
+        function triggerHeartBlast() {
+          blastCooldown = true;
+
+          /* Swap emoji to red heart */
+          emoji.textContent = "❤️";
+          emoji.style.transform = "scale(1.6)";
+
+          /* Show Lottie animation */
+          lottieOverlay.classList.add("active");
+
+          /* Spawn heart particles — all originate from the emoji center */
+          const particleCount = 35;
+
+          for (let i = 0; i < particleCount; i++) {
+            const heart = document.createElement("span");
+            heart.className = "heart-particle";
+            heart.textContent = HEART_EMOJIS[i % HEART_EMOJIS.length];
+
+            /* Randomized trajectory variables — fan out from center (emoji) */
+            const angle = (Math.random() - 0.5) * 2; /* -1 to 1 spread */
+            const txEarly = angle * (30 + Math.random() * 50) + "px";
+            const tyEarly = -(40 + Math.random() * 60) + "px";
+            const txMid = angle * (80 + Math.random() * 140) + "px";
+            const tyMid = -(140 + Math.random() * 180) + "px";
+            const txEnd = angle * (120 + Math.random() * 250) + "px";
+            const tyEnd = -(220 + Math.random() * 320) + "px";
+            const rotEarly = (Math.random() - 0.5) * 60 + "deg";
+            const rotMid = (Math.random() - 0.5) * 180 + "deg";
+            const rotEnd = (Math.random() - 0.5) * 400 + "deg";
+            const duration = 1.4 + Math.random() * 1.0 + "s";
+            const delay = Math.random() * 0.25 + "s";
+            const size = 0.7 + Math.random() * 1.2;
+
+            heart.style.setProperty("--tx-early", txEarly);
+            heart.style.setProperty("--ty-early", tyEarly);
+            heart.style.setProperty("--tx-mid", txMid);
+            heart.style.setProperty("--ty-mid", tyMid);
+            heart.style.setProperty("--tx-end", txEnd);
+            heart.style.setProperty("--ty-end", tyEnd);
+            heart.style.setProperty("--rot-early", rotEarly);
+            heart.style.setProperty("--rot-mid", rotMid);
+            heart.style.setProperty("--rot-end", rotEnd);
+            heart.style.setProperty("--duration", duration);
+            heart.style.fontSize = size + "rem";
+            heart.style.animationDelay = delay;
+
+            blastContainer.appendChild(heart);
+
+            /* Trigger animation on next frame */
+            requestAnimationFrame(() => {
+              heart.classList.add("animate");
+            });
+
+            /* Clean up after animation completes */
+            const totalDuration = (parseFloat(duration) + parseFloat(delay)) * 1000 + 200;
+            setTimeout(() => {
+              if (heart.parentNode) heart.parentNode.removeChild(heart);
+            }, totalDuration);
+          }
+
+          /* Reset after the blast finishes */
+          setTimeout(() => {
+            emoji.textContent = "😊";
+            emoji.style.transform = "";
+            lottieOverlay.classList.remove("active");
+            blastCooldown = false;
+          }, 3000);
+        }
       })();
     </script>
   </body>
