@@ -756,6 +756,44 @@
         position: relative;
       }
 
+      /* ── Tooltip: "Double tap me!" ── */
+      .footer-tooltip {
+        position: absolute;
+        bottom: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%) translateY(4px);
+        background: var(--text);
+        color: #ffffff;
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 0.78rem;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        padding: 6px 12px;
+        border-radius: 8px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 40;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .footer-tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 5px solid transparent;
+        border-top-color: var(--text);
+      }
+
+      .footer-tooltip.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
       /* ── Heart Blast Easter Egg ── */
       .heart-blast-container {
         position: absolute;
@@ -1556,6 +1594,7 @@
           >Built with love</span
         >
         <span class="footer-emoji" id="footerEmoji">😊</span>
+        <span class="footer-tooltip" id="footerTooltip">Double tap me!</span>
         <div class="heart-blast-container" id="heartBlastContainer"></div>
         <div class="heart-lottie-overlay" id="heartLottieOverlay">
           <dotlottie-wc src="Animation - 1712657092760.json" style="width: 300px; height: 300px" autoplay></dotlottie-wc>
@@ -1852,7 +1891,7 @@
       })();
 
       /* ── Footer emoji swap — hover on desktop, tap on mobile/tablet ── */
-      /* ── + Heart Blast Easter Egg (5 clicks) ── */
+      /* ── + Heart Blast Easter Egg (double click / double tap) ── */
       (function () {
         const container = document.getElementById("footerLove");
         const emoji = document.getElementById("footerEmoji");
@@ -1861,7 +1900,7 @@
 
         let clickCount = 0;
         let blastCooldown = false;
-        const CLICK_THRESHOLD = 5;
+        const CLICK_THRESHOLD = 2;
         const HEART_EMOJIS = ["❤️", "❤️", "❤️", "💕", "❤️", "❤️"];
 
         /* Desktop: hover */
@@ -1983,6 +2022,38 @@
             blastCooldown = false;
           }, 3000);
         }
+      })();
+
+      /* ── Tooltip: auto-show "Double tap me!" when footer scrolls into view ── */
+      (function () {
+        const footerEl = document.querySelector("footer");
+        const tooltip = document.getElementById("footerTooltip");
+        if (!footerEl || !tooltip) return;
+
+        let shown = false;
+
+        function showTooltip() {
+          if (shown) return;
+          shown = true;
+          tooltip.classList.add("show");
+          setTimeout(() => {
+            tooltip.classList.remove("show");
+          }, 3000);
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                showTooltip();
+                observer.disconnect();
+              }
+            });
+          },
+          { threshold: 0.3 },
+        );
+
+        observer.observe(footerEl);
       })();
     </script>
   </body>
