@@ -623,6 +623,12 @@
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
+
+        /* Prevent the browser from auto-adjusting scroll position when the
+           heart-blast particles are rapidly added/removed — without this,
+           some mobile browsers (scroll anchoring) can snap the page to the
+           top after the animation finishes. */
+        overflow-anchor: none;
       }
 
       footer p {
@@ -742,6 +748,7 @@
         width: 0;
         height: 0;
         overflow: visible;
+        overflow-anchor: none;
         pointer-events: none;
         z-index: 50;
       }
@@ -1834,6 +1841,24 @@
 
         function triggerHeartBlast() {
           blastCooldown = true;
+
+          /* Safeguard: some mobile browsers can shift scroll position when
+             many DOM nodes are rapidly added/removed near the bottom of the
+             page. Pin the scroll position for the duration of the blast. */
+          const lockedScrollY = window.scrollY;
+          function holdScroll() {
+            if (window.scrollY !== lockedScrollY) {
+              window.scrollTo(window.scrollX, lockedScrollY);
+            }
+          }
+          const holdScrollUntil = Date.now() + 3100;
+          function holdScrollLoop() {
+            holdScroll();
+            if (Date.now() < holdScrollUntil) {
+              requestAnimationFrame(holdScrollLoop);
+            }
+          }
+          requestAnimationFrame(holdScrollLoop);
 
           /* Swap emoji to red heart */
           emoji.textContent = "❤️";
