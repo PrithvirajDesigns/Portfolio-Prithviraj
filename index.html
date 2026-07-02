@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prithviraj R — UI UX Designer</title>
+    <title>Prithviraj R / Portfolio</title>
     <link
       rel="icon"
       type="image/svg+xml"
@@ -723,6 +723,24 @@
 
       .footer-love:hover .footer-emoji {
         transform: scale(1.35);
+      }
+
+      /* On mobile/tablet, stack footer items with "Last updated" below "Built with love" */
+      @media (max-width: 1024px) {
+        footer {
+          grid-template-columns: 1fr;
+          row-gap: 10px;
+          justify-items: center;
+        }
+
+        .footer-love {
+          order: 1;
+        }
+
+        .footer-updated {
+          order: 2;
+          justify-self: center;
+        }
       }
 
       footer span {
