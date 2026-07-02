@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prithviraj R / Portfolio</title>
+    <title>Prithviraj R — UI UX Designer</title>
     <link
       rel="icon"
       type="image/svg+xml"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><style>path{fill:%23000}@media(prefers-color-scheme:dark){path{fill:%23fff}}</style><path d='M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm104,0a8,8,0,0,1-8,8H152a8,8,0,0,1,0-16h24A8,8,0,0,1,184,108Zm-9.08,48c-10.29,17.79-27.39,28-46.92,28s-36.63-10.2-46.93-28a8,8,0,1,1,13.86-8c7.46,12.91,19.2,20,33.07,20s25.61-7.1,33.08-20a8,8,0,1,1,13.84,8Z'/></svg>"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Manjari:wght@100;400;700&display=swap"
@@ -65,8 +64,7 @@
       h3,
       .greeting,
       .section-title,
-      .work-card h3,
-      .about-card h3 {
+      .work-card h3 {
         font-family: "Inter", sans-serif;
         letter-spacing: 0.04em;
       }
@@ -89,8 +87,7 @@
       p,
       .hero-bio,
       .section-sub,
-      .work-card p,
-      .about-card p {
+      .work-card p {
         font-family: "Inter", sans-serif;
         font-style: normal;
       }
@@ -390,9 +387,6 @@
         border-color: var(--primary-dark);
         transform: translateY(-2px);
       }
-      /* .btn-ghost:hover svg {
-        transform: translateX(3px);
-      } */
 
       .btn-resume {
         background: transparent;
@@ -403,56 +397,6 @@
       .btn-resume:hover {
         background: rgba(194, 211, 255, 0.18);
         border-color: var(--primary-dark);
-      }
-
-      /* About cards */
-      .about-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-        margin-top: 40px;
-        max-width: 900px;
-        width: 100%;
-      }
-
-      .about-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 22px 24px;
-        box-shadow: 0 2px 12px rgba(194, 211, 255, 0.12);
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s;
-        will-change: transform;
-        transform: translateZ(0); /* promote to GPU layer */
-      }
-
-      .about-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 32px rgba(194, 211, 255, 0.3);
-      }
-
-      .about-card-icon {
-        font-size: 1.4rem;
-        margin-bottom: 10px;
-      }
-
-      .about-card h3 {
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        font-size: 1rem;
-        letter-spacing: 0.03em;
-        margin-bottom: 6px;
-        color: var(--text);
-      }
-
-      .about-card p {
-        font-family: "Inter", sans-serif;
-        font-size: 0.85rem;
-        font-weight: 300;
-        color: var(--muted);
-        line-height: 1.65;
       }
 
       /* Section title */
@@ -669,7 +613,6 @@
       }
 
       /* Footer */
-      /* Footer */
       footer {
         position: relative;
         z-index: 1;
@@ -719,10 +662,6 @@
         .footer-love {
           cursor: pointer !important;
         }
-      }
-
-      .footer-love:hover .footer-emoji {
-        transform: scale(1.35);
       }
 
       /* On mobile/tablet, stack footer items with "Last updated" below "Built with love" */
@@ -858,16 +797,6 @@
 
       .heart-lottie-overlay.active {
         opacity: 1;
-      }
-
-      /* Pulse feedback on each click toward the 5-click goal */
-      @keyframes clickPulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.4); }
-        100% { transform: scale(1); }
-      }
-      .footer-emoji.pulse {
-        animation: clickPulse 0.3s ease;
       }
 
       #viewMoreBtn {
@@ -1012,15 +941,6 @@
 
       /* ── Mobile Responsive ── */
       @media (max-width: 767px) {
-        /* Hide custom cursor on mobile */
-        * {
-          cursor: auto !important;
-        }
-        #cursor-dot,
-        #cursor-ring {
-          display: none !important;
-        }
-
         /* Header */
         header {
           width: calc(100% - 24px);
@@ -1078,11 +998,6 @@
         .hero-cta {
           margin-top: 32px;
           justify-content: center;
-        }
-
-        /* About cards — single column */
-        .about-cards {
-          grid-template-columns: 1fr;
         }
 
         /* Work grid — single column */
@@ -1305,10 +1220,6 @@
             <div class="work-card-body">
               <p class="work-card-tag">Personal project</p>
               <h3>Skilled Minds e-Learning App</h3>
-              <!-- <p>
-                An engaging e-learning platform designed for 1 lakh+ students.
-                Tools: Figma, Illustrator, Photoshop, Miro. Duration: 4 weeks.
-              </p> -->
               <div class="card-footer">
                 <span class="btn-card-more">
                   More
@@ -1649,22 +1560,6 @@
         .to("#hero-bio", { opacity: 1, x: 0, duration: 0.45 }, "-=0.28")
         .to("#viewMoreBtn", { opacity: 1, y: 0, duration: 0.5 }, "-=0.18");
 
-      gsap.from("#about-cards .about-card", {
-        scrollTrigger: {
-          trigger: "#about-cards",
-          start: "top 85%",
-          once: true,
-          fastScrollEnd: true,
-        },
-        opacity: 0,
-        y: 36,
-        stagger: { amount: 0.4, ease: "power1.in" },
-        duration: 0.65,
-        ease: "power3.out",
-        force3D: true,
-        clearProps: "transform,opacity",
-      });
-
       gsap.from("#work-grid .work-card", {
         scrollTrigger: {
           trigger: "#work-grid",
@@ -1902,6 +1797,7 @@
         let blastCooldown = false;
         const CLICK_THRESHOLD = 2;
         const HEART_EMOJIS = ["❤️", "❤️", "❤️", "💕", "❤️", "❤️"];
+        const isTouchDevice = window.matchMedia("(hover: none)").matches;
 
         /* Desktop: hover */
         container.addEventListener("mouseenter", () => {
@@ -1911,42 +1807,24 @@
           if (!blastCooldown) emoji.textContent = "😊";
         });
 
-        /* Mobile / tablet: tap toggles the emoji */
+        /* Unified tap/click handling — a single "click" listener works
+           natively for both mouse clicks and touch taps. Using a separate
+           touchstart handler with preventDefault() here used to double-count
+           taps and interfere with iOS Safari's native scroll/bounce handling
+           at the bottom of the page, causing an unwanted scroll-to-top. */
         let tapped = false;
-        container.addEventListener(
-          "touchstart",
-          (e) => {
-            e.preventDefault();
-            handleClick();
-            if (!blastCooldown) {
-              if (!tapped) {
-                emoji.textContent = "😍";
-                tapped = true;
-              } else {
-                emoji.textContent = "😊";
-                tapped = false;
-              }
-            }
-          },
-          { passive: false },
-        );
-
-        /* Desktop: click */
-        container.addEventListener("click", handleClick);
+        container.addEventListener("click", () => {
+          handleClick();
+          if (!blastCooldown && isTouchDevice) {
+            tapped = !tapped;
+            emoji.textContent = tapped ? "😍" : "😊";
+          }
+        });
 
         function handleClick() {
           if (blastCooldown) return;
 
           clickCount++;
-
-          /* Visual pulse feedback on each click */
-          emoji.classList.remove("pulse");
-          void emoji.offsetWidth; /* force reflow to restart animation */
-          emoji.classList.add("pulse");
-
-          /* Grow the emoji slightly with each click for visual feedback */
-          const progress = clickCount / CLICK_THRESHOLD;
-          emoji.style.transform = `scale(${1 + progress * 0.5})`;
 
           if (clickCount >= CLICK_THRESHOLD) {
             triggerHeartBlast();
@@ -1959,7 +1837,6 @@
 
           /* Swap emoji to red heart */
           emoji.textContent = "❤️";
-          emoji.style.transform = "scale(1.6)";
 
           /* Show Lottie animation */
           lottieOverlay.classList.add("active");
@@ -2020,6 +1897,7 @@
             emoji.style.transform = "";
             lottieOverlay.classList.remove("active");
             blastCooldown = false;
+            tapped = false;
           }, 3000);
         }
       })();
